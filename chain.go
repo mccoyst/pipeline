@@ -17,7 +17,7 @@ type P []*exec.Cmd
 // be piped together for any reason, nil and the error are returns.
 //
 // This function also returns an error if len(cmds) == 0.
-func New(cmds ...*exec.Cmd) (Chain, error) {
+func New(cmds ...*exec.Cmd) (P, error) {
 	if len(cmds) == 0 {
 		return nil, errors.New("pipeline.New() requires at least one command")
 	}
