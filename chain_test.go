@@ -1,6 +1,6 @@
 // © 2012 Steve McCoy. Available under the MIT license.
 
-package cmdchain
+package pipeline
 
 import (
 	"os"
