@@ -1,7 +1,7 @@
 // © 2012 Steve McCoy. Available under the MIT license.
 
 /*
-Package cmdchain provides a datatype Chain for simple chaining of
+Package pipeline provides a datatype for simple chaining of
 the standard os/exec package's *Cmd.
 */
 package pipeline
