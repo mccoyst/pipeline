@@ -14,7 +14,7 @@ import (
 type P []*exec.Cmd
 
 // New returns a new Chain. If the Cmds' Stdins and Stdouts cannot
-// be piped together for any reason, nil and the error are returns.
+// be piped together for any reason, nil and the error are returned.
 //
 // This function also returns an error if len(cmds) == 0.
 func New(cmds ...*exec.Cmd) (P, error) {
