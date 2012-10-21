@@ -8,6 +8,7 @@ package pipeline
 
 import (
 	"errors"
+	"io"
 	"os/exec"
 )
 
@@ -22,11 +23,16 @@ func New(cmds ...*exec.Cmd) (P, error) {
 		return nil, errors.New("pipeline.New() requires at least one command")
 	}
 
+	outs := make([]io.ReadCloser, 0, len(cmds)-1)
 	for i := 1; i < len(cmds); i++ {
 		out, err := cmds[i-1].StdoutPipe()
 		if err != nil {
+			for _, o := range outs {
+				o.Close()
+			}
 			return nil, err
 		}
+		outs = append(outs, out)
 		cmds[i].Stdin = out
 	}
 
