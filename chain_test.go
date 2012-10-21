@@ -15,7 +15,7 @@ func ExampleNew() {
 		c("sed", "s/i/ello/"))
 
 	if err != nil {
-		os.Stderr.WriteString("Oops: "+err.Error()+"\n")
+		os.Stderr.WriteString("Oops: " + err.Error() + "\n")
 		return
 	}
 
@@ -23,14 +23,14 @@ func ExampleNew() {
 
 	err = cmds.Start()
 	if err != nil {
-		os.Stderr.WriteString("Oops: "+err.Error()+"\n")
+		os.Stderr.WriteString("Oops: " + err.Error() + "\n")
 		return
 	}
 
 	errs := cmds.Wait()
 	if len(errs) > 0 {
 		for _, err := range errs {
-			os.Stderr.WriteString("Oops: "+err.Error()+"\n")
+			os.Stderr.WriteString("Oops: " + err.Error() + "\n")
 		}
 		return
 	}
