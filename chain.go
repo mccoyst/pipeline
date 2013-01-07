@@ -87,6 +87,14 @@ func (c P) Wait() []error {
 	return errs
 }
 
+// SetStderr sets all commands's Stderr to the given Writer; it
+// may be nil as described in the os/exec package documents.
+func (c P) SetStderr(w io.Writer) {
+	for _, cmd := range c {
+		cmd.Stderr = w
+	}
+}
+
 // String returns a string of the form cmd0 | cmd1 | cmd2.
 // It does not try to produce a shell-compatible string or print
 // the commands' arguments.
