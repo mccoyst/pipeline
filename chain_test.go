@@ -5,6 +5,7 @@ package pipeline
 import (
 	"os"
 	"os/exec"
+	"testing"
 )
 
 func ExampleNew() {
@@ -36,4 +37,34 @@ func ExampleNew() {
 	}
 
 	// Output: Hello
+}
+
+func TestString(t *testing.T) {
+	c := exec.Command
+
+	cmds, err := New(c("echo", "a"))
+	if err != nil {
+		t.Fatalf("New failed: %v", err)
+	}
+
+	s := cmds.String()
+	exp := "/bin/echo"
+	if s != exp {
+		t.Errorf("Got %q, expected %q", s, exp)
+	}
+
+	cmds, err = New(
+		c("echo", "hi"),
+		c("sed", "s/h/H/"),
+		c("sed", "s/i/ello/"))
+
+	if err != nil {
+		t.Fatalf("New failed: %v", err)
+	}
+
+	s = cmds.String()
+	exp = "/bin/echo | /usr/bin/sed | /usr/bin/sed"
+	if s != exp {
+		t.Errorf("Got %q, expected %q", s, exp)
+	}
 }

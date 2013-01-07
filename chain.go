@@ -86,3 +86,20 @@ func (c P) Wait() []error {
 
 	return errs
 }
+
+// String returns a string of the form cmd0 | cmd1 | cmd2.
+// It does not try to produce a shell-compatible string or print
+// the commands' arguments.
+func (c P) String() string {
+	s := ""
+
+	if len(c) > 0 {
+		s = c[0].Path
+	}
+
+	for _, cmd := range c[1:] {
+		s += " | " + cmd.Path
+	}
+
+	return s
+}
