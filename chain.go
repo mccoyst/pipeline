@@ -103,10 +103,16 @@ func (c P) String() string {
 
 	if len(c) > 0 {
 		s = c[0].Path
+		for _, a := range c[0].Args[1:] {
+			s += " " + a
+		}
 	}
 
 	for _, cmd := range c[1:] {
 		s += " | " + cmd.Path
+		for _, a := range cmd.Args[1:] {
+			s += " " + a
+		}
 	}
 
 	return s

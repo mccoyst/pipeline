@@ -42,7 +42,7 @@ func ExampleNew() {
 func TestString(t *testing.T) {
 	c := exec.Command
 
-	cmds, err := New(c("echo", "a"))
+	cmds, err := New(c("echo"))
 	if err != nil {
 		t.Fatalf("New failed: %v", err)
 	}
@@ -63,7 +63,7 @@ func TestString(t *testing.T) {
 	}
 
 	s = cmds.String()
-	exp = "/bin/echo | /usr/bin/sed | /usr/bin/sed"
+	exp = "/bin/echo hi | /usr/bin/sed s/h/H/ | /usr/bin/sed s/i/ello/"
 	if s != exp {
 		t.Errorf("Got %q, expected %q", s, exp)
 	}
