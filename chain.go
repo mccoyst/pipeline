@@ -96,8 +96,7 @@ func (c P) SetStderr(w io.Writer) {
 }
 
 // String returns a string of the form cmd0 | cmd1 | cmd2.
-// It does not try to produce a shell-compatible string or print
-// the commands' arguments.
+// It does not try to produce a shell-compatible string.
 func (c P) String() string {
 	s := ""
 
